@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/font.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='icon/find.ico') }}" type="image/x-icon" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Texer</title>
+</head>
+<body>
+<div id="container">
+<div id="xlsx-to-pdf">
+<form action="{{ url_for('upload_files') }}" method="post" enctype="multipart/form-data">
+<input type="file" name="files[]" id="file-input" multiple accept=".xlsx, .xls" style="display: none;">
+<label for="file-input" id="custom-file-upload">
+<img id="xlsx" src="{{ url_for('static', filename='icon/xlsx.png') }}" alt="Subir archivos">
+</label>
+<button type="submit" id="convert">Convert XLSX to TXT</button>
+</form>
+</div>
+
+ <div class="header">
+<h1>Welcome to Texer</h1>
+ </div>
+<div id="list-file">
+<h2>Searchs DNI</h2>
+
+<div id="list">
+ {% for file in sfile %}
+<div class="file">{{ file }}
+<img class="copy" id="copy" src="{{ url_for('static', filename='icon/copy.png') }}">
+<a href="{{ url_for('serve_html', filename=file ~ '.html') }}" target="_blank">
+<img id="link" src="{{ url_for('static', filename='icon/link.png') }}">
+</a>
+</div>
+
+ {% endfor %}
+</div>
+</div>
+ <div class="verify-form">
+<form method="POST">
+<input pattern="\d{8}" maxlength="8" autocomplete="off" spellcheck="false" type="text" name="ci" id='ci' placeholder="CEDULA DE IDENTIDAD" required>
+<button id='btn' type="submit">VERIFICAR</button>
+</form>
+</div>
+<div id="counter" class="counter">Introduzca el DNI</div>
+<script>
+
+ const input = document.getElementById('ci');
+const counter = document.getElementById('counter');
+
+input.addEventListener('input', function () {
+const length = this.value.length;
+const remaining = 7 - length;
+if (remaining > 0) {
+counter.textContent = `Faltan ${remaining} dígitos`;
+counter.classList.remove('error');
+} else {
+counter.textContent = 'Estas en el rango de digitos correcto';
+counter.classList.add('error');
+}
+});
+
+document.getElementById('ci').addEventListener('input', function (e) {
+this.value = this.value.replace(/\D/g, '');
+});
+</script>
+<div class="contenedor-loader">Loading
+<div class="loader1"></div>
+<div class="loader2"></div>
+<div class="loader3"></div>
+<div class="loader4"></div>
+</div>
+
+<script>
+function copiarTexto(div) {
+const textarea = document.createElement('textarea');
+textarea.value = div.innerText.trim();
+document.body.appendChild(textarea);
+textarea.select();
+document.execCommand('copy');
+document.body.removeChild(textarea);
+alert('Texto copiado: ' + div.innerText.trim());
+}
+
+const copyIcons = document.querySelectorAll('.copy');
+copyIcons.forEach((copyIcon) => {
+copyIcon.addEventListener('click', (event) => {
+event.stopPropagation();
+const fileDiv = copyIcon.parentElement;
+copiarTexto(fileDiv);
+});
+});
+const listF=document.querySelector('#list-file').textContent.length;
+if (listF === 21){
+lt=document.getElementById('list');
+lt.style.display='flex';
+document.getElementById('list').innerHTML = 'SIN RESULTADOS';
+}
+ const loading = document.getElementsByClassName('contenedor-loader')[0];
+document.getElementById('btn').addEventListener('click', (event) => {
+ci0=document.getElementById('ci').textContent;
+let rg=ci0.length;
+loading.style.display = 'flex';
+
+});
+</script>
+<div id="buttons">
+<img id="back" src="{{ url_for('static', filename='icon/back.png') }}">
+<img id="create-pdf" src="{{ url_for('static', filename='icon/pdf.png') }}">
+</div>
+
+{% if cedula %}
+<h3 id="dni">{{ cedula }}</h3>
+{% endif %}
+
+<div class="results-of-id">
+ {% if ci%}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+ {% endif %}
+ {% for item in ci %}
+{{ item | safe }}
+{% endfor %}
+ </div>
+</div>
+
+<script>
+const dni0 = document.getElementById('dni');
+const resultsDiv = document.querySelector('.results-of-id');
+let rst = resultsDiv.textContent.trim().length;
+
+if(rst===0){
+dni0.innerHTML = 'NO COINCIDENCES WERE FOUND';
+setTimeout(() => {
+dni0.innerHTML = ''; 
+}, 5000);
+}
+</script>
+</body>
+</html>

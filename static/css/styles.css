@@ -1,0 +1,302 @@
+*{
+padding:0;
+margin: 0;
+font-family: "Lexend", serif;
+font-optical-sizing: auto;
+font-style: normal;
+color:#fff;
+}
+
+body{
+background: #000;
+}
+
+#container{
+display: flex;
+flex-direction: column;
+align-items: center;
+height:100vh;
+gap:20px;
+color:#fff;
+background: #000;
+}
+
+
+.header{
+margin-top:10vh;
+}
+
+#list-file{
+position: absolute;
+top:5vh;
+right:20px;
+min-height:90vh;
+overflow: auto;
+width:18%;
+border-radius:4px;
+border:1px solid gray;
+display:flex;
+flex-direction:column;
+ 
+}
+
+
+#list-file h2{
+background:rgba(50, 50, 50, 1);
+text-align: center;
+margin-bottom:10px;
+ 
+}
+
+#list{
+align-items: center;
+justify-content: center;
+height:80vh;
+
+}
+
+.file {
+background: rgba(50, 50, 50, 0.20);
+text-align: center;
+margin-bottom: 10px;
+padding: 5px;
+display: flex;
+align-items: center;
+position: relative;
+padding-right: 40px;
+}
+
+#link {
+height: 30px;
+width: 30px;
+position: absolute;
+right: 10px; 
+top: 50%; 
+transform: translateY(-50%); 
+}
+
+
+#copy {
+height: 30px;
+width: 30px;
+position: absolute; 
+right: 50px; 
+top: 50%; 
+transform: translateY(-50%);
+}
+
+#copy:hover{
+cursor: pointer;
+}
+
+.file:hover{
+border:1px solid #fff;
+border-radius:4px;
+transition:.9s;
+}
+
+.verify-form{
+border:2px dotted rgba(168, 167, 167, 0.46);
+}
+
+.verify-form:hover{
+border:2px dotted gray;
+transition: .6s;
+}
+.verify-form, form{
+padding:5px;
+display: flex;
+align-items: center;
+flex-direction: column;
+gap:10px;
+width:30%;
+background: rgba(39, 39, 39, 0.33);
+padding:40px 0px 40px 0px;
+border-radius:4px;
+}
+
+form{
+display: flex;
+justify-content: center;
+width:85%;
+ 
+padding:10px;
+}
+
+button, input{
+width:100%;
+outline: none;
+border-radius: 3px;
+}
+
+input[type="text"]{
+font-size:17px;
+ padding:7px 0px 7px 0px;
+text-align: center;
+border:2px solid #000;
+color:#000;
+}
+
+input[type="text"]:hover{
+border:2px solid rgba(0, 184, 43, 0.82);
+transition: .6s;
+}
+
+button{
+font-size:16px;
+padding:5px;
+background: rgba(0, 184, 43, 0.82);
+border:0;
+color:#fff;
+border:2px solid transparent;
+}
+button:hover{
+cursor: pointer;
+opacity: 80%;
+border:2px solid #fff;
+transition: .6s;
+}
+
+
+.results-of-id{
+
+padding:10px;
+border-radius: 3px;
+width:90%;
+display: flex;
+align-items: center;
+flex-direction: column;
+}
+
+.div-results{
+width:70%;
+background:rgba(18, 18, 18, 0.50);
+padding:10px;
+border-radius: 4px;
+font-size:13px;
+background:;
+margin-bottom: 20px;
+border:1px solid rgba(245, 245, 245, 0.23);
+
+}
+
+.number{
+font-size:15px;
+background:rgba(0, 255, 60, 1);
+color:#000;
+padding:0px 6px 2px 6px;
+border-radius: 4px;
+}
+
+.filename::before{
+content:'- ';
+}
+
+.filename{
+color:gray;
+}
+
+
+.contenedor-loader{
+
+display: none;
+flex-wrap: wrap;
+align-items: center;
+justify-content:center;
+gap:5px;
+margin: 0 auto; 
+}
+.contenedor-loader div{ 
+width: 9px;
+height: 20px;
+background-color: #fff;
+animation: salto 1s alternate
+infinite;
+}
+.contenedor-loader div:nth-child(2){ 
+animation-delay: 0.20s; 
+}
+.contenedor-loader div:nth-child(3){ 
+animation-delay: 0.40s; 
+}
+.contenedor-loader div:nth-child(4){ 
+animation-delay: 0.60s; 
+}
+@keyframes salto {
+from {
+opacity: 1;
+}
+to{
+opacity: 0;
+}
+}
+
+img{
+height: 40px;
+height: 40px;
+}
+
+#buttons{
+display: none;
+position: absolute;
+left:20px;
+top:15px;
+}
+
+
+#create-pdf:hover{
+cursor: pointer;
+}
+
+#dni{
+margin-top:30px;
+}
+
+
+#back{
+margin-right: 10px;
+cursor:pointer;
+}
+
+#back:hover{
+border: 1px solid green;
+border-radius: 50%;
+}
+
+#counter{
+color: rgba(0, 184, 43, 0.82);
+}
+
+#convert{
+background:transparent;
+border:2px dotted gray;
+color:#fff;
+width:auto;
+}
+
+
+#xlsx-to-pdf{
+ 
+position: absolute;
+left:0px;
+bottom:30px;
+padding:5px;
+width:25%;
+}
+
+#xlsx-to-pdf form{
+background: transparent;
+}
+
+#xlsx{
+width: 60px;
+height: 70px;
+}
+
+#xlsx:hover{
+cursor: pointer;
+background: green;
+border-radius: 4px;
+transition: .7s;
+
+}
