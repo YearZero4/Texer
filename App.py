@@ -32,12 +32,16 @@ def xlsx_to_txt(input0, output1):
   raise ValueError("Formato de archivo no admitido. Use .xlsx o .xls.")
 
 f0 = os.path.join('src', 'found')
+db0 = os.path.join('src', 'database')
 folder_files = ['html', 'pdf', 'txt']
 
 for i in folder_files:
  create_folder=os.path.join(f0, i)
  if not os.path.exists(create_folder):
   os.makedirs(create_folder)
+
+if not os.path.exists(db0):
+  os.makedirs(db0)
 
 folder_found=os.path.join('src', 'found', 'txt')
 html=os.path.join('src', 'found', 'html')
